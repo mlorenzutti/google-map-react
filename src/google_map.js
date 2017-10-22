@@ -113,6 +113,7 @@ export default class GoogleMap extends Component {
     debounced: PropTypes.bool,
     margin: PropTypes.array,
     googleMapLoader: PropTypes.any,
+    isChina: PropTypes.bool,
     onGoogleApiLoaded: PropTypes.func,
     yesIWantToUseGoogleMapApiInternals: PropTypes.bool,
     draggable: PropTypes.bool,
@@ -253,7 +254,7 @@ export default class GoogleMap extends Component {
       ...this.props.bootstrapURLKeys,
     };
 
-    this.props.googleMapLoader(bootstrapURLKeys); // we can start load immediatly
+    this.props.googleMapLoader(bootstrapURLKeys, this.props.isChina); // we can start load immediatly
 
     setTimeout(
       () => {
@@ -490,7 +491,7 @@ export default class GoogleMap extends Component {
     };
 
     this.props
-      .googleMapLoader(bootstrapURLKeys)
+      .googleMapLoader(bootstrapURLKeys, this.props.isChina)
       .then(maps => {
         if (!this.mounted_) {
           return;

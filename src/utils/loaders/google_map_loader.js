@@ -9,7 +9,11 @@ const _customPromise = new Promise(resolve => {
 });
 
 // TODO add libraries language and other map options
-export default function googleMapLoader(bootstrapURLKeys) {
+export default function googleMapLoader(bootstrapURLKeys, isChina) {
+  const apiGoogle = isChina
+    ? 'http://maps.google.cn/maps/api/'
+    : 'https://maps.googleapis.com/maps/api/';
+
   if (!$script_) {
     $script_ = require('scriptjs'); // eslint-disable-line
   }
@@ -63,7 +67,7 @@ export default function googleMapLoader(bootstrapURLKeys) {
     );
 
     $script_(
-      `https://maps.googleapis.com/maps/api/js?callback=_$_google_map_initialize_$_${queryString}`,
+      `${apiGoogle}js?callback=_$_google_map_initialize_$_${queryString}`,
       () =>
         typeof window.google === 'undefined' &&
         reject(new Error('google map initialization error (not loaded)'))
