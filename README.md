@@ -62,6 +62,28 @@ class SimpleMap extends Component {
 }
 ```
 
+## China Google Maps API support
+
+If you need to load Chinese Google maps API it's really easy, just add the parameter isChina to your component
+
+```javascript
+render() {
+    return (
+      <GoogleMapReact
+        defaultCenter={this.props.center}
+        defaultZoom={this.props.zoom}
+        isChina={true}
+      >
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text={'Kreyser Avrora'}
+        />
+      </GoogleMapReact>
+    );
+  }
+```
+
 ## Installation
 
 ```
